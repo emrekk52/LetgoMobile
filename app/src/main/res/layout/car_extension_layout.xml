@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    >
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/km"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/type"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/model"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/engine"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/gear"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/color"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView    android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/fuel"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:padding="5dp"
+        android:background="@drawable/car_textview_bg"
+        android:layout_margin="5dp"
+        android:id="@+id/traction"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

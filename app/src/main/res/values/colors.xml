@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF4663</color>
+    <color name="purple_700">#FF6981</color>
+    <color name="teal_200">#FF4663</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+
+    <color name="letgo_purple">#FF4663</color>
+    <color name="indicator_background">#C4FFFFFF</color>
+    <color name="bottom_bar_icon_tint">#C8FFFFFF</color>
+
+    <color name="gray">#878787</color>
+    <color name="darkGray">#949494</color>
+    <color name="searchBarColor">#EEEEEE</color>
+
+
+
+    //category background color
+    <color name="car">#327FB6</color>
+    <color name="electronic">#6BCEBB</color>
+    <color name="home_items">#FFD200</color>
+    <color name="other_tools">#FB8636</color>
+    <color name="clothes">#FD7E91</color>
+    <color name="baby">#21C3F4</color>
+    <color name="car_tools">#5BAF9F</color>
+    <color name="spor">#C2DCA6</color>
+    <color name="garden">#DDDDDD</color>
+    <color name="game">#C96BA0</color>
+    <color name="movie_book_music">#EC7EBD</color>
+    <color name="other">#E1C33F</color>
+
+
+
+</resources>

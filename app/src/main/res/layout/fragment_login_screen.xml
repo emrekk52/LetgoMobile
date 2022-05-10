@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".view.LoginScreen">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_margin="30dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <TextView
+            android:id="@+id/loginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/loginText"
+            android:textColor="@color/letgo_purple"
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+
+        <TextView
+            android:id="@+id/orText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/defaultPadding"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/orText"
+            android:textColor="@color/letgo_purple"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editCityLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editEmailLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:endIconMode="clear_text"
+            app:helperText="@string/requiredEditText"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/letgo_purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginText"
+            app:startIconDrawable="@drawable/ic_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/mailEditText"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/defaultPadding"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginText" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editPasswordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:endIconMode="password_toggle"
+            app:helperText="@string/requiredEditText"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/letgo_purple"
+            app:layout_constraintEnd_toEndOf="@+id/editEmailLayout"
+            app:layout_constraintStart_toStartOf="@+id/editEmailLayout"
+            app:layout_constraintTop_toBottomOf="@+id/editEmailLayout"
+            app:startIconDrawable="@drawable/ic_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/passwordEditText"
+                android:inputType="textPassword"
+                android:padding="@dimen/defaultPadding"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/editEmailLayout"
+                app:layout_constraintStart_toStartOf="@+id/editEmailLayout"
+                app:layout_constraintTop_toBottomOf="@+id/editEmailLayout" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:helperText="@string/requiredEditText"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/letgo_purple"
+            app:layout_constraintEnd_toEndOf="@+id/editPasswordLayout"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordLayout"
+            app:layout_constraintTop_toBottomOf="@+id/editPasswordLayout"
+            app:startIconDrawable="@drawable/ic_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editName"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/nameEditText"
+                android:padding="@dimen/defaultPadding"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editSurnameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:helperText="@string/requiredEditText"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/letgo_purple"
+            app:layout_constraintEnd_toEndOf="@+id/editPasswordLayout"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordLayout"
+            app:layout_constraintTop_toBottomOf="@+id/editNameLayout"
+            app:startIconDrawable="@drawable/ic_surname">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editSurname"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/surnameEditText"
+                android:padding="@dimen/defaultPadding"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editCityLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            app:endIconMode="dropdown_menu"
+            app:helperText="@string/requiredEditText"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/letgo_purple"
+            app:layout_constraintEnd_toEndOf="@+id/editPasswordLayout"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordLayout"
+            app:layout_constraintTop_toBottomOf="@+id/editSurnameLayout"
+            app:startIconDrawable="@drawable/ic_city">
+
+            <AutoCompleteTextView
+                android:id="@+id/editCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:hint="@string/cityEditText"
+                android:padding="@dimen/defaultPadding"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signUpButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_login_button"
+            android:fontFamily="@font/roboto_bold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/signUpText"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/editPasswordLayout"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toBottomOf="@+id/orText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_login_button"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/backText"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/signUpButton"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordLayout"
+            app:layout_constraintTop_toBottomOf="@+id/orText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_login_button"
+            android:fontFamily="@font/roboto_bold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/loginText"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/editPasswordLayout"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordLayout"
+            app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+

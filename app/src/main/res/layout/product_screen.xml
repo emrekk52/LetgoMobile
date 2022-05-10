@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="clear_text"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editProductHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/headerText"
+            android:maxLength="100"
+            android:maxLines="2"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="clear_text"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+
+        >
+
+        <com.cottacush.android.currencyedittext.CurrencyEditText
+            android:id="@+id/editProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/priceText"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            app:currencySymbol="₺"
+            app:maxNumberOfDecimalDigits="3" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/descriptionText"
+            android:maxLength="200"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editKmLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="clear_text"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_line">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editCarKm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carKmText"
+            android:maxLength="200"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarTypeLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/car_type">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carTypeText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarEngineLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_engine">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarEngine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carEngineText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarColorLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_color">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carColorText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarGearLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_gear">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarGear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carGearText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarModelLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_year">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carModelText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarFuelLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_fuel">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarFuel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carFuelText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        android:id="@+id/editCarTractionLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="dropdown_menu"
+        app:helperText="@string/requiredEditText"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/letgo_purple"
+        app:startIconDrawable="@drawable/ic_car_traction">
+
+        <AutoCompleteTextView
+            android:id="@+id/editCarTraction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/carTractionText"
+            android:padding="@dimen/defaultPadding"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/createProductButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_login_button"
+        android:fontFamily="@font/roboto_bold"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/createProduct"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

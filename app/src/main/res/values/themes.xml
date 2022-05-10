@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.LetgoEcommerce" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/letgo_purple</item>
+        <item name="colorPrimaryVariant">@color/letgo_purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/letgo_purple</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/letgo_purple</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.LetgoEcommerce.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.LetgoEcommerce.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.LetgoEcommerce.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SearchBarTheme" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox
+        </item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="endIconTint">@color/mtrl_filled_icon_tint</item>
+        <item name="startIconTint">@color/mtrl_filled_icon_tint</item>
+        <item name="boxCollapsedPaddingTop">10dp</item>
+        <item name="boxStrokeColor">@color/mtrl_filled_icon_tint</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.MaterialComponents.TextInputLayout.FilledBox
+        </item>
+    </style>
+</resources>

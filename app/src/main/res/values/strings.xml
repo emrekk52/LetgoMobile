@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">LetgoEcommerce</string>
+
+
+    <string name="homeText">Anasayfa</string>
+    <string name="notificationText">Bildirimler</string>
+    <string name="advertCameraText">Sat</string>
+    <string name="messageText">Sohbet</string>
+    <string name="advertText">İlanlarım</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="topBarFilterText">Filtrele</string>
+    <string name="searchText">Ara</string>
+    <string name="loginText">Giriş yap</string>
+    <string name="mailEditText">E-mail</string>
+    <string name="orText">ya da</string>
+    <string name="signUpText">Kayıt ol</string>
+    <string name="passwordEditText">Şifre</string>
+    <string name="nameEditText">İsim</string>
+    <string name="surnameEditText">Soyisim</string>
+    <string name="cityEditText">Şehir</string>
+    <string name="backText">Geri</string>
+    <string name="requiredEditText">Bu alan doldurulmak zorunda*</string>
+    <string name="chooseCategory">Kategori seçiniz</string>
+    <string name="title_activity_edit_product">EditProductActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="headerText">Başlık</string>
+    <string name="priceText">Fiyat</string>
+    <string name="descriptionText">Açıklama</string>
+    <string name="createProduct">İlan oluştur</string>
+    <string name="retryActiveText">Tekrar yayına al</string>
+    <string name="productInactiveText">İlan yayından kaldırıldı</string>
+    <string name="signoutText">Çıkış yap</string>
+
+
+    <string name="carKmText">Km</string>
+    <string name="carTypeText">Kasa Tipi</string>
+    <string name="carEngineText">Motor Gücü</string>
+    <string name="carColorText">Renk</string>
+    <string name="carGearText">Vites</string>
+    <string name="carModelText">Yıl</string>
+    <string name="carFuelText">Yakıt</string>
+    <string name="carTractionText">Çekiş</string>
+    <string name="notFoundText">Henüz bir şey aratmadınız</string>
+    <string name="enterPrice">Fiyat aralığı giriniz</string>
+    <string name="maxPriceText">Max fiyat</string>
+    <string name="minPriceText">Min fiyat</string>
+    <string name="chooseCityText">Şehir seçiniz</string>
+    <string name="minCarModelYear">Min yıl</string>
+    <string name="maxCarModelYear">Max yıl</string>
+    <string name="maxCarKmYear">Max km</string>
+    <string name="minCarKmYear">Min km</string>
+
+
+</resources>

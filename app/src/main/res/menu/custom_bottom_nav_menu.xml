@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/homeScreen"
+        android:icon="@drawable/ic_home"
+        android:title="@string/homeText" />
+
+    <item
+        android:id="@+id/notificationScreen"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/notificationText" />
+
+    <item
+        android:id="@+id/buyAdvertScreen"
+        android:icon="@drawable/ic_camera"
+        android:title="@string/advertCameraText" />
+
+    <item
+        android:id="@+id/messageScreen"
+        android:icon="@drawable/ic_message"
+        android:title="@string/messageText" />
+
+    <item
+        android:id="@+id/myAdvertScreen"
+        android:icon="@drawable/ic_advert"
+        android:title="@string/advertText" />
+
+
+</menu>

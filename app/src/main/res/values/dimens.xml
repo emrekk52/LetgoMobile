@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="_16sdp">16dp</dimen>
+
+    <dimen name="bottomBarTextSize">13sp</dimen>
+    <dimen name="bottomBarIconSize">24dp</dimen>
+    <dimen name="largeTextSize">18sp</dimen>
+    <dimen name="defaultPadding">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="smallSize">10sp</dimen>
+
+</resources>
