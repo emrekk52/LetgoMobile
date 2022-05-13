@@ -23,6 +23,7 @@ import com.ecommerce.letgoecommerce.extension.Constant.Companion.carGearList
 import com.ecommerce.letgoecommerce.extension.Constant.Companion.carTractionList
 import com.ecommerce.letgoecommerce.extension.Constant.Companion.carTypeList
 import com.ecommerce.letgoecommerce.extension.Constant.Companion.carYearList
+import com.ecommerce.letgoecommerce.model.CarExtension
 import com.ecommerce.letgoecommerce.model.DbResult
 import com.ecommerce.letgoecommerce.model.Product
 import com.ecommerce.letgoecommerce.sql.ConSQL
@@ -154,26 +155,38 @@ class EditProductActivity : AppCompatActivity() {
                         .isNotEmpty() && editProductPrice.text.toString().isNotEmpty()
                 ) {
 
-                    if(categoryId==13){
-                        val km=binding.productScreen.editCarKm.text.toString().trim()
-                        val carType=binding.productScreen.editCarType.text.toString().trim()
-                        val carEngine=binding.productScreen.editCarEngine.text.toString().trim()
-                        val carColor=binding.productScreen.editCarColor.text.toString().trim()
-                        val carGear=binding.productScreen.editCarGear.text.toString().trim()
-                        val carYear=binding.productScreen.editCarModel.text.toString().trim()
-                        val carFuel=binding.productScreen.editCarFuel.text.toString().trim()
-                        val carTraction=binding.productScreen.editCarTraction.text.toString().trim()
+                    if (categoryId == 13) {
+                        val km = binding.productScreen.editCarKm.text.toString().trim()
+                        val carType = binding.productScreen.editCarType.text.toString().trim()
+                        val carEngine = binding.productScreen.editCarEngine.text.toString().trim()
+                        val carColor = binding.productScreen.editCarColor.text.toString().trim()
+                        val carGear = binding.productScreen.editCarGear.text.toString().trim()
+                        val carYear = binding.productScreen.editCarModel.text.toString().trim()
+                        val carFuel = binding.productScreen.editCarFuel.text.toString().trim()
+                        val carTraction =
+                            binding.productScreen.editCarTraction.text.toString().trim()
 
-                        if(km.isNotEmpty() && carType.isNotEmpty() && carEngine.isNotEmpty() && carColor.isNotEmpty() && carGear.isNotEmpty() &&
-                                carYear.isNotEmpty() && carFuel.isNotEmpty() && carTraction.isNotEmpty())
-                                    addProduct()
+                        val carExtension = CarExtension(
+                            km = km.toInt(),
+                            carGear = carGear,
+                            carFuel = carFuel,
+                            carEngine = carEngine,
+                            carColor = carColor,
+                            carType = carType,
+                            carModel = carYear.toInt(),
+                            carTraction = carTraction
+                        )
+
+                        if (km.isNotEmpty() && carType.isNotEmpty() && carEngine.isNotEmpty() && carColor.isNotEmpty() && carGear.isNotEmpty() &&
+                            carYear.isNotEmpty() && carFuel.isNotEmpty() && carTraction.isNotEmpty()
+                        )
+                            addProduct(carExtension)
                         else
                             showToast("Tüm alanların doldurulması zorunludur")
 
-                    }else{
+                    } else {
                         addProduct()
                     }
-
 
 
                 } else {
@@ -189,7 +202,7 @@ class EditProductActivity : AppCompatActivity() {
         }
     }
 
-    private fun addProduct() {
+    private fun addProduct(carExtension: CarExtension? = null) {
 
         val _header = binding.productScreen.editProductHeader.text.toString()
         val _price = binding.productScreen.editProductPrice.getNumericValue().toFloat()
@@ -206,6 +219,9 @@ class EditProductActivity : AppCompatActivity() {
             pictureList = uriList?.shuffled()
         )
         var result: Deferred<DbResult>? = null
+
+        if (product.categoryId == 13 && carExtension != null)
+            product.carExtension = carExtension
 
 
         CoroutineScope(Dispatchers.IO).launch {

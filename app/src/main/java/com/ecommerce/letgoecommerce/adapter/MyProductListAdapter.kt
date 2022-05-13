@@ -50,9 +50,12 @@ class MyProductListAdapter(val itemClick: (position: Int) -> Unit) :
         val clickPr = view.findViewById<ConstraintLayout>(R.id.clickPr)
         val retryActiveProduct = view.findViewById<TextView>(R.id.retryActiveProduct)
 
+        init {
+            clickPr.setOnClickListener { itemClick(position) }
+        }
 
         fun bind(product: Product) {
-            clickPr.setOnClickListener { itemClick(position) }
+
 
             if (product?.bitmapList?.size!! > 0)
                 image.setImageBitmap(product.bitmapList?.get(0))

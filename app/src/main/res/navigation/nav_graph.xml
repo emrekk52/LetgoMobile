@@ -49,6 +49,12 @@
         android:label="fragment_message_screen"
         tools:layout="@layout/fragment_message_screen">
 
+        <action
+            android:id="@+id/action_messageScreen_to_chatScreenFragment"
+            app:destination="@id/chatScreenFragment" />
+        <action
+            android:id="@+id/action_messageScreen_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/myAdvertScreen"
@@ -98,6 +104,9 @@
         <action
             android:id="@+id/action_productDetailFragment_to_userScreen"
             app:destination="@id/userScreen" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_chatScreenFragment"
+            app:destination="@id/chatScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/allProductFragment"
@@ -133,6 +142,21 @@
             app:argType="com.ecommerce.letgoecommerce.model.Filter"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatScreenFragment"
+        android:name="com.ecommerce.letgoecommerce.view.ChatScreenFragment"
+        android:label="fragment_chat_screen"
+        tools:layout="@layout/fragment_chat_screen" >
+        <argument
+            android:name="tmessage"
+            app:argType="com.ecommerce.letgoecommerce.model.TMessage" />
+        <action
+            android:id="@+id/action_chatScreenFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_chatScreenFragment_to_userScreen"
+            app:destination="@id/userScreen" />
     </fragment>
 
 </navigation>

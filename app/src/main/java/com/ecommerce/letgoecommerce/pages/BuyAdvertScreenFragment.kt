@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ecommerce.letgoecommerce.activity.EditProductActivity
 import com.ecommerce.letgoecommerce.adapter.CategoryAdapter
 import com.ecommerce.letgoecommerce.databinding.FragmentBuyAdvertScreenBinding
-import com.ecommerce.letgoecommerce.extension.createFileImage
 import com.ecommerce.letgoecommerce.extension.showToast
 import com.ecommerce.letgoecommerce.extension.startIntent
 import com.ecommerce.letgoecommerce.model.CategoryModel

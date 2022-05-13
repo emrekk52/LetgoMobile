@@ -1,5 +1,7 @@
 package com.ecommerce.letgoecommerce.model
 
+import java.io.Serializable
+
 data class User(
     var id: Int? = null,
     val name: String,
@@ -9,5 +11,5 @@ data class User(
     val city: String?=null,
     val cityId: Int?=null,
     var photo_url: String? = null,
-)
+):Serializable
 

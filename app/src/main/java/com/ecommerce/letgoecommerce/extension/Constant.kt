@@ -12,6 +12,9 @@ class Constant {
         const val PRODUCT_STATE_ACTIVE = 0
         const val PRODUCT_STATE_INACTIVE = 1
 
+
+         val readyMessageList= listOf("Hala satılık mı?","Fiyatta pazarlık payı var mı?","Ne durumda?")
+
         val cList = listOf<CategoryModel>(
 
             CategoryModel(name = "Araba", image = R.drawable.ic_car, color = R.color.car),
@@ -70,7 +73,7 @@ class Constant {
             val array = arrayListOf<String>()
             for (i in 1944..2022)
                 array.add(i.toString())
-            return array
+            return array.reversed()
         }
 
         val carTypeList = listOf("Sedan", "Hatchback", "Station Wagon", "SUV", "Cabrio", "Pick up")

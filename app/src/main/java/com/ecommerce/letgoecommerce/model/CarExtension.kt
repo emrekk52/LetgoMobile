@@ -1,7 +1,7 @@
 package com.ecommerce.letgoecommerce.model
 
 data class CarExtension(
-    val id: Int,
+    val id: Int?=null,
     val km: Int,
     val carType: String,
     val carModel: Int,

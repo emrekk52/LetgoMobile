@@ -24,6 +24,10 @@ import com.ecommerce.letgoecommerce.activity.MainActivity
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -100,10 +104,7 @@ fun convertImagetoBitmap(data: String?): Bitmap? {
     return data
 }
 
-fun createFileImage(context: Context): File {
-    val dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    return File.createTempFile(UUID.randomUUID().toString(), ".jpg", dir)
-}
+
 
 fun convertBitmaptoBase64(context: Context, uri: Uri): String {
 
@@ -123,4 +124,5 @@ fun moneyFormatter(number: Float): String {
             .replace("'", ".")
     } else number.toString().replace(".", ",")
 }
+
 

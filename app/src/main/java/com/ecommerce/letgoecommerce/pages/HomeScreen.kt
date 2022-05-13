@@ -1,20 +1,16 @@
 package com.ecommerce.letgoecommerce.pages
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
-import com.ecommerce.letgoecommerce.R
 import com.ecommerce.letgoecommerce.activity.MainActivity.Companion._categoryList
 import com.ecommerce.letgoecommerce.activity.MainActivity.Companion._randomListCity
 import com.ecommerce.letgoecommerce.activity.MainActivity.Companion._randomListProduct
@@ -71,6 +67,9 @@ class HomeScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeScreenBinding.inflate(layoutInflater, container, false)
+        conSQL = ConSQL()
+
+        user = conSQL.getUserInfo()
         return binding.root
     }
 
@@ -78,9 +77,7 @@ class HomeScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        conSQL = ConSQL()
 
-        user = conSQL.getUserInfo()
 
         if (user?.photo_url != null)
             binding.topBar.profileImage.setImageBitmap(convertImagetoBitmap(user?.photo_url))

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,19 @@ import androidx.navigation.fragment.navArgs
 import com.ecommerce.letgoecommerce.R
 
 import com.ecommerce.letgoecommerce.activity.MainActivity.Companion.bottomBar
+import com.ecommerce.letgoecommerce.adapter.ReadyMessageAdapter
 import com.ecommerce.letgoecommerce.databinding.FragmentProductDetailBinding
 import com.ecommerce.letgoecommerce.databinding.ProductXLargePhotoSliderDesignBinding
 import com.ecommerce.letgoecommerce.extension.Constant.Companion.PRODUCT_STATE_ACTIVE
+import com.ecommerce.letgoecommerce.extension.Constant.Companion.readyMessageList
 import com.ecommerce.letgoecommerce.extension.SpecialShared
 import com.ecommerce.letgoecommerce.extension.convertImagetoBitmap
 import com.ecommerce.letgoecommerce.extension.moneyFormatter
 import com.ecommerce.letgoecommerce.extension.showToast
 import com.ecommerce.letgoecommerce.imageSlider.`interface`.ItemClickListener
 import com.ecommerce.letgoecommerce.imageSlider.model.SlideUIModel
+import com.ecommerce.letgoecommerce.model.Message
+import com.ecommerce.letgoecommerce.model.TMessage
 import com.ecommerce.letgoecommerce.model.User
 import com.ecommerce.letgoecommerce.sql.ConSQL
 
@@ -62,9 +65,35 @@ class ProductDetailFragment : Fragment() {
         bottomBar?.visibility = View.GONE
     }
 
+
+    private fun readyMessageItemClick(position: Int) {
+        val myUser = conSQL.getUser()
+        val result = conSQL.postMessage(
+            Message(
+                receiver_id = args.product.userId,
+                sender_id = myUser?.id,
+                message = readyMessageList[position],
+                product_id = args.product.id
+            )
+        )
+
+        if(result) {
+            val tm = TMessage()
+            tm.product = args.product
+            tm.user = conSQL.getUserInfo(args.product.userId)
+            findNavController().navigate(
+                ProductDetailFragmentDirections.actionProductDetailFragmentToChatScreenFragment(tm)
+            )
+        }else
+            showToast("Mesaj gönderilemedi")
+    }
+
     @SuppressLint("SetTextI18n")
     private fun initializeInfo() {
         binding.apply {
+
+            sendMessageRecycler.adapter = ReadyMessageAdapter(::readyMessageItemClick)
+
 
             if (args.product.userId != sp.getUserId())
                 removeButton.visibility = View.GONE
@@ -74,9 +103,9 @@ class ProductDetailFragment : Fragment() {
             if (imageList.size > 0)
                 binding.imageSlider.setImageList(imageList)
 
-            binding.imageSlider.setItemClickListener(object:ItemClickListener{
+            binding.imageSlider.setItemClickListener(object : ItemClickListener {
                 override fun onItemClick(model: SlideUIModel, position: Int) {
-                   openXLargePhoto(imageList)
+                    openXLargePhoto(imageList)
                 }
 
             })

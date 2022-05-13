@@ -11,9 +11,13 @@ import com.ecommerce.letgoecommerce.extension.convertBitmaptoBase64
 import com.ecommerce.letgoecommerce.extension.convertImagetoBitmap
 import com.ecommerce.letgoecommerce.extension.showToast
 import com.ecommerce.letgoecommerce.model.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.ResultSet
 import java.sql.SQLException
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -30,6 +34,7 @@ class ConSQL {
         const val categoryTable = "category"
         const val productTable = "product"
         const val cityTable = "city"
+        const val messageTable = "message"
 
         const val USER_ID = "user_id"
         const val PRODUCT_ID = "id"
@@ -463,9 +468,8 @@ class ConSQL {
                     val engine = product.carExtension?.carEngine!!.substring(0, 2)
                     smt.setInt(1, product.id!!)
                     smt.setInt(2, product.carExtension?.km!!)
-                    smt.setInt(4, product.carExtension?.carModel!!)
-
                     smt.setString(3, product.carExtension?.carType!!)
+                    smt.setInt(4, product.carExtension?.carModel!!)
                     smt.setString(5, engine)
                     smt.setString(6, product.carExtension?.carGear!!)
                     smt.setString(7, product.carExtension?.carColor!!)
@@ -543,15 +547,22 @@ class ConSQL {
     }
 
 
-    fun getProduct(userId: Int): List<Product> {
+    fun getProduct(userId: Int, product_id: Int? = null): List<Product> {
         val connection = conClass()
         val list = arrayListOf<Product>()
 
         if (connection != null) {
 
 
-            val query =
-                "select * from ${productTable} where user_id='$userId'  order by created_date desc"
+            var query =
+                "select * from ${productTable} where user_id='$userId' order by created_date desc"
+
+            if (product_id != null) {
+                query =
+                    "select * from ${productTable} where id='$product_id' order by created_date desc"
+
+            }
+
             val smt = connection.createStatement()
             val set = smt.executeQuery(query)
 
@@ -565,13 +576,15 @@ class ConSQL {
                     set.getString("header"),
                     set.getFloat("price"),
                     set.getString("description"),
-                    bitmapList = getProductImages(
-                        set.getInt("id"),
-                        userId
-                    ),
                     state = set.getInt("state"),
                     createdDate = convertDate(set.getString("created_date")),
 
+                    )
+
+                if (product_id == null)
+                    product.bitmapList = getProductImages(
+                        set.getInt("id"),
+                        userId
                     )
 
                 if (product.categoryId == 13) {
@@ -669,13 +682,14 @@ class ConSQL {
 
 
     @SuppressLint("SimpleDateFormat")
-    private fun convertDate(time: String?): String {
+    private fun convertDate(time: String?, _outputFormat: String? = null): String {
 
         if (time == null)
             return ""
 
         val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val outputFormat: DateFormat = SimpleDateFormat("HH:mm dd MMM, yyyy", Locale("tr"))
+        val outputFormat: DateFormat =
+            SimpleDateFormat(_outputFormat ?: "HH:mm dd MMM, yyyy", Locale("tr"))
 
         val date: Date = inputFormat.parse(time) as Date
 
@@ -703,9 +717,9 @@ class ConSQL {
             val set = smt.executeQuery(query)
 
             while (set.next()) {
-                val photo_url = set.getString("photo_url")
-                if (photo_url != null) {
-                    val bitmap = convertImagetoBitmap(photo_url)
+                val photoUrl = set.getString("photo_url")
+                if (photoUrl != null) {
+                    val bitmap = convertImagetoBitmap(photoUrl)
                     list.add(bitmap!!)
                     if (isBreak) break
 
@@ -1058,8 +1072,7 @@ class ConSQL {
                     }
 
                 }
-            }
-            else {
+            } else {
 
                 var topQuery =
                     "user_id!='${sp.getUserId()}' and category_id='${filter?.categoryId}' "
@@ -1112,6 +1125,254 @@ class ConSQL {
         list
 
 
+    }
+
+
+    private fun getMessage(set: ResultSet): List<Message> {
+        val list = arrayListOf<Message>()
+        while (set.next()) {
+            list.add(
+                Message(
+                    set.getInt("id"),
+                    set.getInt("receiver_id"),
+                    set.getInt("sender_id"),
+                    set.getInt("product_id"),
+                    set.getString("message"),
+                    convertDate(set.getString("created_date"), "HH:mm dd MMM"),
+                )
+            )
+        }
+        return list;
+    }
+
+    fun getMessageList(user_id: Int? = null) = CoroutineScope(Dispatchers.IO).async {
+        val connection = conClass()
+        val list = arrayListOf<TMessage>()
+
+        if (connection != null) {
+            try {
+                var userId = user_id
+                if (userId == null)
+                    userId = sp.getUserId()
+
+                val sender =
+                    "select * from ${messageTable} where sender_id='$userId' order by receiver_id desc"
+                val receiver =
+                    "select * from ${messageTable} where receiver_id='$userId' order by sender_id desc"
+
+                val smt = connection.createStatement()
+                val set = smt.executeQuery(sender)
+
+                val receivedIdList = arrayListOf<Int>()
+                val senderList = getMessage(set)
+                val receiverList = getMessage(smt.executeQuery(receiver))
+
+                senderList.forEach {
+                    if (!receivedIdList.contains(it.receiver_id)) {
+                        receivedIdList.add(it.receiver_id!!)
+                    }
+                }
+
+                receiverList.forEach {
+                    if (!receivedIdList.contains(it.sender_id)) {
+                        receivedIdList.add(it.sender_id!!)
+                    }
+                }
+
+                receivedIdList.forEach { id ->
+
+                    val tm = TMessage()
+                    tm.user = getUserInfo(id)
+                    tm.messageList = listMessage(id, userId!!)
+
+                    val prListId = arrayListOf<Int>()
+
+                    if (tm.messageList != null) {
+
+                        tm.messageList?.forEach {
+
+
+                            if (!prListId.contains(it.product_id)) {
+                                prListId.add(it.product_id!!)
+                                val msgList =
+                                    tm.messageList?.filter { t -> t.product_id!! == it.product_id }
+
+                                val _tm = TMessage()
+
+                                _tm.user = tm.user
+                                _tm.messageList = msgList
+
+                                _tm.product = getProduct(sp.getUserId()!!, it.product_id)[0]
+
+                                list.add(_tm)
+
+                            }
+
+
+                        }
+
+                    }
+
+
+                }
+
+                connection.close()
+            } catch (ex: Exception) {
+                Log.w("message", "Error message ${ex.message}")
+                println("Error message ${ex.message}")
+
+            }
+
+        }
+
+
+        list
+    }
+
+    private fun listMessage(receiver_id: Int, user_id: Int): List<Message> {
+
+        val connection = conClass()
+        val list = arrayListOf<Message>()
+
+        if (connection != null) {
+            try {
+                val query_sender =
+                    "select * from ${messageTable} where sender_id='$user_id' and receiver_id='$receiver_id'"
+                val query_receiver =
+                    "select * from ${messageTable} where sender_id='$receiver_id' and receiver_id='$user_id'"
+
+                val smt = connection.createStatement()
+                val sender = getMessage(smt.executeQuery(query_sender))
+                val receiver = getMessage(smt.executeQuery(query_receiver))
+
+                list.addAll(sender)
+                list.addAll(receiver)
+
+                connection.close()
+
+            } catch (ex: java.lang.Exception) {
+                Log.w("error listMessage", "${ex.message}")
+
+            }
+
+
+        }
+
+
+        list.sortBy { it.id }
+
+        return list
+    }
+
+    fun getProductImages(
+        productId: Int,
+    ): List<Bitmap> {
+
+        val connection = conClass()
+        val list = arrayListOf<Bitmap>()
+
+        if (connection != null) {
+
+            val query =
+                "select * from ${imageTable} where product_id='$productId'"
+
+            val smt = connection.createStatement()
+            val set = smt.executeQuery(query)
+            while (set.next()) {
+                convertImagetoBitmap(set.getString("photo_url"))?.let { list.add(it) }
+            }
+
+            connection.close()
+
+        }
+
+        return list
+    }
+
+    fun getProductImage(
+        productId: Int,
+    ): String? {
+
+        val connection = conClass()
+
+        if (connection != null) {
+
+            val query =
+                "select * from ${imageTable} where product_id='$productId'"
+
+            val smt = connection.createStatement()
+            val set = smt.executeQuery(query)
+            while (set.next()) {
+                return set.getString("photo_url")
+            }
+
+            connection.close()
+
+        }
+
+        return null
+    }
+
+    fun postMessage(message: Message) :Boolean{
+        val connection = conClass()
+
+        if (connection != null) {
+            try {
+
+                val sqlStatement =
+                    "insert into ${ConSQL.messageTable} (receiver_id,sender_id,message,product_id)" +
+                            "values ('${message.receiver_id}','${message.sender_id}','${message.message}','${message.product_id}');"
+                val smt = connection.createStatement()
+                smt.execute(sqlStatement)
+
+                connection.close()
+
+                return true
+
+
+            } catch (ex: java.lang.Exception) {
+                Log.w("Error post message", ex.message.toString())
+                return false
+            }
+
+
+        }
+        return false
+    }
+
+    fun getListChatMessage(user_id: Int,receiver_id: Int,product_id: Int):List<Message>{
+
+        val connection = conClass()
+        val list = arrayListOf<Message>()
+
+        if (connection != null) {
+            try {
+                val query_sender =
+                    "select * from ${messageTable} where sender_id='$user_id' and receiver_id='$receiver_id' and product_id='$product_id'"
+                val query_receiver =
+                    "select * from ${messageTable} where sender_id='$receiver_id' and receiver_id='$user_id' and product_id='$product_id'"
+
+                val smt = connection.createStatement()
+                val sender = getMessage(smt.executeQuery(query_sender))
+                val receiver = getMessage(smt.executeQuery(query_receiver))
+
+                list.addAll(sender)
+                list.addAll(receiver)
+
+                connection.close()
+
+            } catch (ex: java.lang.Exception) {
+                Log.w("error get list chat message", "${ex.message}")
+
+            }
+
+
+        }
+
+
+        list.sortBy { it.id }
+
+         return list
     }
 
 
